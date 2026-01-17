@@ -18,6 +18,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.miyazaki.weatherforecast.domain.model.WeatherInfo
+import androidx.compose.ui.res.stringResource
+import com.miyazaki.weatherforecast.R
 
 @Composable
 fun WeatherItem(info: WeatherInfo) {
@@ -54,7 +56,7 @@ fun WeatherItem(info: WeatherInfo) {
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
-                text = "${info.temperature}℃",
+                text = stringResource(R.string.temperature_format, info.temperature),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.primary
             )

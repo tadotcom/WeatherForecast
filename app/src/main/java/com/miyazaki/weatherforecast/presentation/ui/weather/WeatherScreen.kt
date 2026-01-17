@@ -20,6 +20,8 @@ import androidx.navigation.NavController
 import com.miyazaki.weatherforecast.presentation.ui.weather.components.ErrorView
 import com.miyazaki.weatherforecast.presentation.ui.weather.components.LoadingView
 import com.miyazaki.weatherforecast.presentation.ui.weather.components.WeatherItem
+import androidx.compose.ui.res.stringResource
+import com.miyazaki.weatherforecast.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,7 +34,7 @@ fun WeatherScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("${viewModel.city}の天気") },
+                title = { Text(stringResource(R.string.weather_title_format, viewModel.city)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
