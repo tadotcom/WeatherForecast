@@ -21,7 +21,7 @@ class WeatherViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
 
-    private val city: String = checkNotNull(savedStateHandle["city"])
+    val city: String = checkNotNull(savedStateHandle["city"])
 
     private var fetchJob: Job? = null
 
