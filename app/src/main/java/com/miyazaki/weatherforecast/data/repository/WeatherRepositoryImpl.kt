@@ -8,6 +8,8 @@ import com.miyazaki.weatherforecast.domain.repository.WeatherRepository
 import com.miyazaki.weatherforecast.util.Constants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
@@ -26,6 +28,12 @@ class WeatherRepositoryImpl @Inject constructor(
             val domainData = response.list.map { it.toDomain() }
             emit(Result.success(domainData))
 
+        } catch (e: IOException) {
+            e.printStackTrace()
+            emit(Result.failure(Exception("通信に失敗しました。ネット接続を確認してください。")))
+        } catch (e: HttpException) {
+            e.printStackTrace()
+            emit(Result.failure(Exception("サーバーエラーが発生しました。時間を置いて再度お試しください。")))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(Result.failure(e))
