@@ -39,4 +39,23 @@ class WeatherRepositoryImpl @Inject constructor(
             emit(Result.failure(e))
         }
     }
+
+    override fun getWeatherByLocation(lat: Double, lon: Double): Flow<Result<List<WeatherInfo>>> = flow {
+        try {
+            val response = api.getForecastByGeo(
+                lat = lat,
+                lon = lon,
+                apiKey = BuildConfig.WEATHER_API_KEY
+            )
+            val domainData = response.list.map { it.toDomain() }
+            emit(Result.success(domainData))
+        } catch (e: IOException) {
+            emit(Result.failure(Exception("通信に失敗しました。ネット接続を確認してください。")))
+        } catch (e: HttpException) {
+            emit(Result.failure(Exception("サーバーエラーが発生しました。時間を置いて再度お試しください。")))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
 }
