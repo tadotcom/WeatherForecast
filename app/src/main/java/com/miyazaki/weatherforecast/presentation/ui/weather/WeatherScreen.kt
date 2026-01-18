@@ -44,7 +44,6 @@ fun WeatherScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    // ★修正: screenTitleを使用
                     Text(screenTitle)
                 },
                 navigationIcon = {
