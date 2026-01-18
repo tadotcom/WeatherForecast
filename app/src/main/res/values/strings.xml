@@ -3,8 +3,11 @@
     <string name="home_title">天気予報</string>
 
     <string name="temperature_format">%.1f℃</string>
-
+    <string name="current_weather_title">現在の天気</string>
     <string name="weather_title_format">%sの天気</string>
+
+    <string name="forecast_title">3時間ごとの予報</string>
+    <string name="back_button_desc">戻る</string>
 
     <string name="error_network">通信に失敗しました。ネット接続を確認してください。</string>
     <string name="error_server">サーバーエラーが発生しました。</string>
