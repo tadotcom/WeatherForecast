@@ -9,6 +9,10 @@
     <string name="forecast_title">3時間ごとの予報</string>
     <string name="back_button_desc">戻る</string>
 
+    <string name="search_by_current_location">現在地から探す</string>
+    <string name="location_permission_denied">位置情報の権限が必要です。</string>
+    <string name="location_fetch_error">位置情報を取得できませんでした。</string>
+
     <string name="error_network">通信に失敗しました。ネット接続を確認してください。</string>
     <string name="error_server">サーバーエラーが発生しました。</string>
     <string name="error_unknown">予期せぬエラーが発生しました。</string>

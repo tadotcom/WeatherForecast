@@ -113,6 +113,12 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // コルーチン
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+
+    // 拡張アイコンセット
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 }
 
 kotlin {
