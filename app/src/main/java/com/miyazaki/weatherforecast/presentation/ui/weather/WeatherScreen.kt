@@ -77,7 +77,7 @@ fun WeatherScreen(
                             )
                         }
                     }
-                    
+
                     items(state.weatherList.drop(1)) { weather ->
                         WeatherItem(info = weather)
                         HorizontalDivider()
