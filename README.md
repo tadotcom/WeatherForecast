@@ -1,9 +1,9 @@
 # WeatherForecast App
 
 ## デモ (Demo)
-アプリの動作イメージです。
+アプリの動作イメージです。画面遷移と、状況に応じたエラーハンドリングをご確認ください。
 
-https://github.com/user-attachments/assets/b89d0de6-bd4e-4585-b619-b024711ac1ee
+https://github.com/user-attachments/assets/148c04a7-76cb-4d10-9ff3-3dfc5c8c917f
 
 ## 概要 (Overview)
 都市名から天気情報を検索・表示するAndroidアプリケーションです。
