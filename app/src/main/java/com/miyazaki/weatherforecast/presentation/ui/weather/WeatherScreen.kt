@@ -7,16 +7,22 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.miyazaki.weatherforecast.R
+import com.miyazaki.weatherforecast.presentation.ui.weather.components.CurrentWeatherCard
 import com.miyazaki.weatherforecast.presentation.ui.weather.components.ErrorView
 import com.miyazaki.weatherforecast.presentation.ui.weather.components.LoadingView
 import com.miyazaki.weatherforecast.presentation.ui.weather.components.WeatherItem
@@ -32,12 +38,15 @@ fun WeatherScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("${viewModel.city}の天気") },
+                title = {
+                    // 文字列リソースで "%sの天気" をフォーマット
+                    Text(stringResource(R.string.weather_title_format, viewModel.city))
+                },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "戻る"
+                            contentDescription = stringResource(R.string.back_button_desc)
                         )
                     }
                 }
@@ -58,8 +67,24 @@ fun WeatherScreen(
                 LazyColumn(
                     modifier = Modifier.padding(paddingValues)
                 ) {
-                    items(state.weatherList) { weather ->
+                    // 1. 現在の天気 (リストの先頭要素を大きく表示)
+                    item {
+                        state.weatherList.firstOrNull()?.let { currentWeather ->
+                            CurrentWeatherCard(info = currentWeather)
+
+                            // セクションタイトル
+                            Text(
+                                text = stringResource(R.string.forecast_title),
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                            )
+                        }
+                    }
+
+                    // 2. 週間予報 (2番目以降の要素をリスト表示)
+                    items(state.weatherList.drop(1)) { weather ->
                         WeatherItem(info = weather)
+                        HorizontalDivider()
                     }
                 }
             }

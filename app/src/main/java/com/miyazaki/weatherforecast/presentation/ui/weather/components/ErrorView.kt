@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.miyazaki.weatherforecast.R
 
 @Composable
 fun ErrorView(
@@ -32,7 +34,7 @@ fun ErrorView(
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = onRetry) {
-            Text("リトライ")
+            Text(stringResource(R.string.button_retry))
         }
     }
 }
