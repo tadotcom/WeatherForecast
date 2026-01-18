@@ -68,7 +68,7 @@ class WeatherRepositoryImpl @Inject constructor(
             val cachedData = weatherDao.getWeatherByKey(cacheKey)
 
             if (cachedData != null) {
-                emit(Result.success(Pair("現在地の天気", cachedData.weatherList)))
+                emit(Result.success(Pair("現在地", cachedData.weatherList)))
             } else {
                 val response = api.getForecastByGeo(
                     lat = lat,
