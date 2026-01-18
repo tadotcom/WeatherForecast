@@ -103,7 +103,5 @@
 
 ## 動作環境
 - Android Studio Otter 2 Feature Drop | 2025.2.2
-- Target SDK: 34
-- Min SDK: 24
 - Target SDK: 36
-- Min SDK: 26
+- Min SDK: 24
