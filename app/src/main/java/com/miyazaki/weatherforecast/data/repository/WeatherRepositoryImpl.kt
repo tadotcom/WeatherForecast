@@ -44,6 +44,11 @@ class WeatherRepositoryImpl @Inject constructor(
                     weatherList = domainData,
                     cachedAt = System.currentTimeMillis()
                 )
+
+                // 24時間以上前のキャッシュは削除する
+                val threshold = System.currentTimeMillis() - (24 * 60 * 60 * 1000)
+                weatherDao.deleteOldCache(threshold)
+
                 weatherDao.insertWeather(newCache)
                 emit(Result.success(Pair(response.city.name, domainData)))
             }
@@ -81,6 +86,11 @@ class WeatherRepositoryImpl @Inject constructor(
                     weatherList = domainData,
                     cachedAt = System.currentTimeMillis()
                 )
+
+                // 24時間以上前のキャッシュは削除する
+                val threshold = System.currentTimeMillis() - (24 * 60 * 60 * 1000)
+                weatherDao.deleteOldCache(threshold)
+
                 weatherDao.insertWeather(newCache)
                 emit(Result.success(Pair(response.city.name, domainData)))
             }
