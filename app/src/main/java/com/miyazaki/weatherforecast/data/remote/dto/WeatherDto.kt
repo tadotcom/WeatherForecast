@@ -3,7 +3,19 @@ package com.miyazaki.weatherforecast.data.remote.dto
 import com.squareup.moshi.Json
 
 data class WeatherResponseDto(
-    @Json(name = "list") val list: List<ForecastItemDto>
+    @Json(name = "list") val list: List<ForecastItemDto>,
+    @Json(name = "city") val city: CityDto
+)
+
+data class CityDto(
+    @Json(name = "name") val name: String,
+    @Json(name = "coord") val coord: CoordDto? = null,
+    @Json(name = "country") val country: String? = null
+)
+
+data class CoordDto(
+    @Json(name = "lat") val lat: Double,
+    @Json(name = "lon") val lon: Double
 )
 
 data class ForecastItemDto(

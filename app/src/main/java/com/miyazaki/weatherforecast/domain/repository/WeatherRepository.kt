@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.Flow
 interface WeatherRepository {
 
     /** 都市名から天気情報を取得 */
-    fun getWeatherByCity(city: String): Flow<Result<List<WeatherInfo>>>
+    fun getWeatherByCity(city: String): Flow<Result<Pair<String, List<WeatherInfo>>>>
 
     /** 緯度経度から天気情報を取得 */
-    fun getWeatherByLocation(lat: Double, lon: Double): Flow<Result<List<WeatherInfo>>>
+    fun getWeatherByLocation(lat: Double, lon: Double): Flow<Result<Pair<String, List<WeatherInfo>>>>
 }

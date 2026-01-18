@@ -14,12 +14,12 @@ class GetWeatherByCityUseCase @Inject constructor(
     private val repository: WeatherRepository
 ) {
     /** 都市名から天気情報を取得 */
-    operator fun invoke(city: String): Flow<Result<List<WeatherInfo>>> {
+    operator fun invoke(city: String): Flow<Result<Pair<String, List<WeatherInfo>>>> {
         return repository.getWeatherByCity(city)
     }
 
     /** 緯度経度から天気情報を取得 */
-    operator fun invoke(lat: Double, lon: Double): Flow<Result<List<WeatherInfo>>> {
+    operator fun invoke(lat: Double, lon: Double): Flow<Result<Pair<String, List<WeatherInfo>>>> {
         return repository.getWeatherByLocation(lat, lon)
     }
 }

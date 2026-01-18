@@ -16,17 +16,16 @@ class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi
 ) : WeatherRepository {
 
-    override fun getWeatherByCity(city: String): Flow<Result<List<WeatherInfo>>> = flow {
+    override fun getWeatherByCity(city: String): Flow<Result<Pair<String, List<WeatherInfo>>>> = flow {
         try {
             val queryCity = Constants.CITY_NAME_MAP[city] ?: city
-
             val response = api.get5DayForecast(
                 city = queryCity,
                 apiKey = BuildConfig.WEATHER_API_KEY
             )
-
             val domainData = response.list.map { it.toDomain() }
-            emit(Result.success(domainData))
+
+            emit(Result.success(Pair(response.city.name, domainData)))
 
         } catch (e: IOException) {
             e.printStackTrace()
@@ -40,7 +39,7 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getWeatherByLocation(lat: Double, lon: Double): Flow<Result<List<WeatherInfo>>> = flow {
+    override fun getWeatherByLocation(lat: Double, lon: Double): Flow<Result<Pair<String, List<WeatherInfo>>>> = flow {
         try {
             val response = api.getForecastByGeo(
                 lat = lat,
@@ -48,10 +47,14 @@ class WeatherRepositoryImpl @Inject constructor(
                 apiKey = BuildConfig.WEATHER_API_KEY
             )
             val domainData = response.list.map { it.toDomain() }
-            emit(Result.success(domainData))
+
+            emit(Result.success(Pair(response.city.name, domainData)))
+
         } catch (e: IOException) {
+            e.printStackTrace()
             emit(Result.failure(Exception("通信に失敗しました。ネット接続を確認してください。")))
         } catch (e: HttpException) {
+            e.printStackTrace()
             emit(Result.failure(Exception("サーバーエラーが発生しました。時間を置いて再度お試しください。")))
         } catch (e: Exception) {
             e.printStackTrace()

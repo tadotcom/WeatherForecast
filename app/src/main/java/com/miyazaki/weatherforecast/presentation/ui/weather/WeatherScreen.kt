@@ -35,11 +35,17 @@ fun WeatherScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+    val screenTitle = when (val state = uiState) {
+        is WeatherUiState.Success -> "${state.cityName}の天気"
+        else -> stringResource(R.string.app_name)
+    }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(stringResource(R.string.weather_title_format, viewModel.city))
+                    // ★修正: screenTitleを使用
+                    Text(screenTitle)
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
