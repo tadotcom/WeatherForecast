@@ -1,5 +1,10 @@
 # WeatherForecast App
 
+## デモ (Demo)
+アプリの動作イメージです。
+
+https://github.com/user-attachments/assets/b89d0de6-bd4e-4585-b619-b024711ac1ee
+
 ## 概要 (Overview)
 都市名から天気情報を検索・表示するAndroidアプリケーションです。
 「実務での運用」を想定し、モダンなアーキテクチャ（MVVM + Clean Architecture）と、保守性の高い技術スタック（Jetpack Compose, Hilt）を採用して構築しました。
