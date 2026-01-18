@@ -19,6 +19,11 @@ import com.miyazaki.weatherforecast.presentation.ui.theme.WeatherForecastTheme
 import com.miyazaki.weatherforecast.presentation.ui.weather.WeatherScreen
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * アプリのメインActivity
+ *
+ * Navigation Composeを使用した画面遷移を管理します。
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +41,27 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = Screen.Home.route
                     ) {
+                        // ホーム画面（地域選択）
                         composable(Screen.Home.route) {
                             HomeScreen(navController = navController)
                         }
 
+                        // 天気画面（都市名指定）
                         composable(
                             route = Screen.Weather.route,
                             arguments = listOf(
                                 navArgument("city") { type = NavType.StringType }
+                            )
+                        ) {
+                            WeatherScreen(navController = navController)
+                        }
+
+                        // 天気画面(現在地・緯度経度指定)
+                        composable(
+                            route = Screen.WeatherLocation.route,
+                            arguments = listOf(
+                                navArgument("lat") { type = NavType.StringType },
+                                navArgument("lon") { type = NavType.StringType }
                             )
                         ) {
                             WeatherScreen(navController = navController)

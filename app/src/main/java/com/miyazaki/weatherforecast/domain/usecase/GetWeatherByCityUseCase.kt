@@ -6,12 +6,20 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * 都市名から天気情報を取得するユースケース
+ * 天気情報を取得するユースケース
+ *
+ * 都市名または緯度経度から天気予報を取得します。
  */
 class GetWeatherByCityUseCase @Inject constructor(
     private val repository: WeatherRepository
 ) {
-    operator fun invoke(city: String): Flow<Result<List<WeatherInfo>>> {
+    /** 都市名から天気情報を取得 */
+    operator fun invoke(city: String): Flow<Result<Pair<String, List<WeatherInfo>>>> {
         return repository.getWeatherByCity(city)
+    }
+
+    /** 緯度経度から天気情報を取得 */
+    operator fun invoke(lat: Double, lon: Double): Flow<Result<Pair<String, List<WeatherInfo>>>> {
+        return repository.getWeatherByLocation(lat, lon)
     }
 }

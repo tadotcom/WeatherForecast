@@ -35,12 +35,17 @@ fun WeatherScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+    val screenTitle = when (val state = uiState) {
+        is WeatherUiState.Success -> "${state.cityName}の天気"
+        else -> stringResource(R.string.app_name)
+    }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    // 文字列リソースで "%sの天気" をフォーマット
-                    Text(stringResource(R.string.weather_title_format, viewModel.city))
+                    // ★修正: screenTitleを使用
+                    Text(screenTitle)
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
@@ -67,12 +72,10 @@ fun WeatherScreen(
                 LazyColumn(
                     modifier = Modifier.padding(paddingValues)
                 ) {
-                    // 1. 現在の天気 (リストの先頭要素を大きく表示)
                     item {
                         state.weatherList.firstOrNull()?.let { currentWeather ->
                             CurrentWeatherCard(info = currentWeather)
 
-                            // セクションタイトル
                             Text(
                                 text = stringResource(R.string.forecast_title),
                                 style = MaterialTheme.typography.titleMedium,
@@ -81,7 +84,6 @@ fun WeatherScreen(
                         }
                     }
 
-                    // 2. 週間予報 (2番目以降の要素をリスト表示)
                     items(state.weatherList.drop(1)) { weather ->
                         WeatherItem(info = weather)
                         HorizontalDivider()
