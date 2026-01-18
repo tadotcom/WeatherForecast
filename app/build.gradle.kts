@@ -119,9 +119,6 @@ dependencies {
 
     // 拡張アイコンセット
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
-
-    // JSON変換用
-    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 kotlin {
