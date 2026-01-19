@@ -14,8 +14,8 @@ interface WeatherDao {
     @Query("SELECT * FROM weather_cache WHERE cacheKey = :key")
     suspend fun getWeatherByKey(key: String): WeatherCacheEntity?
 
-    @Query("DELETE FROM weather_cache WHERE cachedAt < :threshold")
-    suspend fun deleteOldCache(threshold: Long)
+    @Query("DELETE FROM weather_cache WHERE cacheKey NOT LIKE '%' || :todayDate || '%'")
+    suspend fun deletePastCache(todayDate: String)
 
     @Query("DELETE FROM weather_cache")
     suspend fun deleteAll()
