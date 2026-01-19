@@ -32,7 +32,7 @@ https://github.com/user-attachments/assets/b70a2350-4dca-461b-a8c7-8737c0cf2a3f
   - 端末の位置情報サービスを利用し、現在地の天気を検索可能。
 
 
-## ディレクトリ構成 (Project Structure)
+## ディレクトリ構成
 ```
 app/src/main/java/com/miyazaki/weatherforecast/
 ├── data/              # データ層
@@ -51,7 +51,7 @@ app/src/main/java/com/miyazaki/weatherforecast/
 ```
 
 
-## セットアップ (Setup)
+## セットアップ
 
 ### 1. API Keyの取得
 
