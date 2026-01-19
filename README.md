@@ -1,10 +1,16 @@
 # WeatherForecast App
 
-## デモ
+## デモ動画
 アプリの動作イメージです。<br>
 画面遷移と、状況に応じたエラーハンドリングをご確認ください。
 
 https://github.com/user-attachments/assets/b70a2350-4dca-461b-a8c7-8737c0cf2a3f
+
+## スクリーンショット
+
+| ホーム画面 | 天気画面 | エラー画面 |
+|-----------|---------|-----------|
+| ![ホーム画面](https://github.com/user-attachments/assets/e0ff91fb-bd08-4591-a807-973186f25ed7) | ![天気画面](https://github.com/user-attachments/assets/27bbe790-7562-4fe8-b2fa-dc4184fbfa9c) | ![エラー画面](https://github.com/user-attachments/assets/cbf86e74-9f04-4487-804e-d770bab05e85) |
 
 ## 概要
 都市名から天気情報を検索・表示するAndroidアプリケーションです。
