@@ -4,7 +4,7 @@
 アプリの動作イメージです。<br>
 画面遷移と、状況に応じたエラーハンドリングをご確認ください。
 
-https://github.com/user-attachments/assets/148c04a7-76cb-4d10-9ff3-3dfc5c8c917f
+https://github.com/user-attachments/assets/b70a2350-4dca-461b-a8c7-8737c0cf2a3f
 
 ## 概要
 都市名から天気情報を検索・表示するAndroidアプリケーションです。
@@ -21,9 +21,47 @@ https://github.com/user-attachments/assets/148c04a7-76cb-4d10-9ff3-3dfc5c8c917f
 - **オフラインキャッシュ**
   - Roomデータベースを使用し、取得した天気データをキャッシュ。
   - **キャッシュ戦略:** 同日中の再アクセス時はAPIを叩かずキャッシュを表示し、通信量を削減。
-  - **自動クリーニング:** DB肥大化を防ぐため、24時間を経過した古いキャッシュを自動削除するロジックを実装。
+  - **自動クリーニング:** DB肥大化を防ぐため、当日以外の古いキャッシュを自動削除するロジックを実装。
 - **現在地取得**
   - 端末の位置情報サービスを利用し、現在地の天気を検索可能。
+
+
+## ディレクトリ構成 (Project Structure)
+```
+app/src/main/java/com/miyazaki/weatherforecast/
+├── data/              # データ層
+│   ├── local/        # Room
+│   ├── remote/       # Retrofit
+│   └── repository/   # Repository実装
+├── domain/            # ドメイン層
+│   ├── model/        # DomainModel
+│   ├── repository/   # Repository IF
+│   └── usecase/      # UseCase
+├── presentation/      # プレゼンテーション層
+│   ├── ui/           # Screen, ViewModel
+│   ├── navigation/   # Navigation
+│   └── theme/        # Theme
+└── di/                # Hilt Module
+```
+
+
+## セットアップ (Setup)
+
+### 1. API Keyの取得
+
+[OpenWeatherMap](https://openweathermap.org/api)でAPIキーを取得してください。
+
+### 2. API Keyの設定
+
+プロジェクト直下の `local.properties` に以下を追加:
+```properties
+WEATHER_API_KEY=あなたのAPIキー
+```
+
+### 3. ビルド
+```bash
+./gradlew assembleDebug
+```
 
 ## 技術スタック
 - **Language:** Kotlin
