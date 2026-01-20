@@ -14,7 +14,7 @@ https://github.com/user-attachments/assets/b70a2350-4dca-461b-a8c7-8737c0cf2a3f
 
 ## 概要
 都市名から天気情報を検索・表示するAndroidアプリケーションです。
-「実務での運用」を想定し、モダンなアーキテクチャ（MVVM + Clean Architecture）と、保守性の高い技術スタック（Jetpack Compose, Hilt）を採用して構築しました。
+「実務での運用」を想定し、モダンなアーキテクチャ(MVVM + Clean Architecture)と、保守性の高い技術スタック(Jetpack Compose, Hilt)を採用して構築しました。
 
 ## 主な機能
 - **都市別天気予報:**
@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/b70a2350-4dca-461b-a8c7-8737c0cf2a3f
   - ファーストビューで「現在の天気」を強調表示。
   - 3時間ごとの週間予報をリスト表示。
 - **昼夜の自動判定:**
-  - APIの時刻データに基づき、昼（Day）と夜（Night）のアイコンを適切に出し分け。
+  - APIの時刻データに基づき、昼(Day)と夜(Night)のアイコンを適切に出し分け。
 - **オフラインキャッシュ**
   - Roomデータベースを使用し、取得した天気データをキャッシュ。
   - **キャッシュ戦略:** 同日中の再アクセス時はAPIを叩かずキャッシュを表示し、通信量を削減。
@@ -70,26 +70,26 @@ WEATHER_API_KEY=あなたのAPIキー
 ```
 
 ## 技術スタック
-- **Language:** Kotlin
-- **UI:** Jetpack Compose (Material Design 3)
-- **Architecture:** MVVM + Clean Architecture (Presentation / Domain / Data)
+- **言語:** Kotlin
+- **UI:** Jetpack Compose(Material Design 3)
+- **Architecture:** MVVM + Clean Architecture(Presentation / Domain / Data)
 - **DI:** Hilt
 - **Network:** Retrofit2, OkHttp3
-- **JSON Parser:** Moshi (KotlinJsonAdapterFactory)
+- **JSON Parser:** Moshi(KotlinJsonAdapterFactory)
 - **Database:** Room
-- **Async:** Coroutines, Flow
+- **非同期処理:** Coroutines, Flow
 - **Image Loading:** Coil
-- **Testing:** JUnit4, Mockk, Kotlinx-coroutines-test
+- **テスト:** JUnit4, Mockk, Kotlinx-coroutines-test
 
 ## 工夫した点
 
 ### 1. 設計と保守性
 - **Clean Architecture:**
-  - ビジネスロジック（Domain）と技術的詳細（Data/Presentation）を分離し、テスト容易性を確保しました。
+  - ビジネスロジック(Domain)と技術的詳細(Data/Presentation)を分離し、テスト容易性を確保しました。
 - **JSONライブラリの統一:**
   - RoomのTypeConverterでGsonを使用していた箇所をMoshiにリファクタリングし、アプリサイズの削減と依存関係の整理を行いました。
 - **単体テスト (Unit Testing):**
-  - `Mockk` と `TestDispatcher` を使用し、ViewModelの状態遷移（Loading -> Success/Error）を検証するテストコードを実装済みです。
+  - `Mockk` と `TestDispatcher` を使用し、ViewModelの状態遷移(Loading -> Success/Error)を検証するテストコードを実装済みです。
 
 ### 2. UI/UXの改善
 - **視認性の向上:**
